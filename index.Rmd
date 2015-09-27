@@ -1,0 +1,69 @@
+---
+title       : Temperature and Precipitation Anomalies in Navacerrada (Guadarrama Mountain, Spain)
+subtitle    : 
+author      : Daniel Cabello
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+# Objective:
+
+Represent visually anomalies of temperature and precipitation at Navacerrada (Guadarrama mountain, Spain)
+
+# Methodology:
+
+1. Climatic data were collected from Navacerrada weather station for the period between 1947 and 2010.(source:AEMET)
+
+2. Temperature and precipitation anomalies were calculated from the average of the reference value or long-term average.Difference between monthly or yearly values and its average at the base period 1946-1976.
+
+3. Annual and monthly anomalies are plotted
+
+--- . slide3 
+
+# Annual Anomalies between 1947 and 2010
+
+```{r, echo=FALSE}
+NavacerradaAnnual <- read.table(file = "NavacerradaAnnual.CSV",header = TRUE, sep = ",",
+        colClasses = c("character","numeric","numeric","numeric", "numeric","numeric"))
+
+par(mfcol=c(2,1))
+
+plot(NavacerradaAnnual$Year,NavacerradaAnnual$TmA, type = "h",main = "Annual Temperature Anomaly (1947-2010)", xlab = "Water Year", ylab = "Temperature Anomaly (ºC)")
+
+plot(NavacerradaAnnual$Year,NavacerradaAnnual$PmA, type = "h",main = "Annual Precipitation Anomaly (1947-2010)", xlab = "Water Year", ylab = "Precipitation Anomaly (mm)")
+par(mfcol=c(1,1))
+
+```
+
+
+--- . slide4
+
+# Monthly Anomalies between 1947 and 2010
+
+
+```{r, echo=FALSE}
+
+Navacerrada <- read.table(file = "Navacerrada.CSV",header = TRUE, sep = ",",
+        colClasses = c("numeric","numeric","Date","numeric","numeric","numeric",
+                       "numeric","numeric"))
+
+par(mfcol=c(2,1))
+
+plot(Navacerrada$Date,Navacerrada$TmA, type = "h",main = "Monthly Temperature Anomaly", xlab = "Year", ylab = "Temperature Anomaly (ºC)")
+
+plot(Navacerrada$Date,Navacerrada$PmA, type = "h",main = "Monthly Precipitation Anomaly", xlab = "Year", ylab = "Precipitation Anomaly (mm)")
+```
+
+--- .slide5 
+ 
+# Thank you for your attention!
+
+![width](Image.png)
+
+
+
